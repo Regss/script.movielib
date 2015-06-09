@@ -81,6 +81,7 @@ def prep(self, m, v):
         'originaltitle': m['originaltitle'].encode('utf-8') if 'originaltitle' in m else '',
         'country[]': panelsValue['country'] if 'country' in m else '',
         'set': m['set'].encode('utf-8') if 'set' in m else '',
+        'imdbid': m['imdbnumber'] if 'imdbnumber' in m else '',
         'actor[]': panelsValue['actor'] if 'cast' in m else '',
         'studio[]': panelsValue['studio'] if 'studio' in m else '',
         'premiered': m['premiered'] if 'premiered' in m else '',

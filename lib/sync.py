@@ -29,7 +29,7 @@ def start(self):
     self.setXBMC['Notify']   = __addon__.getSetting('notify')
     self.setXBMC['Debug']    = __addon__.getSetting('debug')
     
-    self.versionWebScript = '2.7.2'
+    self.versionWebScript = '2.7.3'
     
     self.progBar = bar.Bar()
     
@@ -102,11 +102,11 @@ def check(self):
     
     val = [
         {
-            'json': '{"jsonrpc": "2.0", "method": "VideoLibrary.GetMovies", "params": {"properties": ["cast", "title", "plot", "rating", "year", "thumbnail", "fanart", "runtime", "genre", "director", "originaltitle", "country", "set", "studio", "trailer", "playcount", "lastplayed", "dateadded", "streamdetails", "file"]}, "id": "1"}',
+            'json': '{"jsonrpc": "2.0", "method": "VideoLibrary.GetMovies", "params": {"properties": ["cast", "title", "plot", "rating", "year", "thumbnail", "fanart", "runtime", "genre", "director", "originaltitle", "country", "set", "imdbnumber", "studio", "trailer", "playcount", "lastplayed", "dateadded", "streamdetails", "file"]}, "id": "1"}',
             'id': 'movieid',
             'table': 'movies',
             'lang': 32201,
-            'values' : ['id', 'table', 'title', 'originaltitle', 'year', 'rating', 'plot', 'set', 'studio[]', 'genre[]', 'actor[]', 'runtime', 'country[]', 'director[]', 'poster', 'trailer', 'file', 'fanart', 'thumb[]', 'last_played', 'play_count', 'date_added', 'stream[]', 'hash']
+            'values' : ['id', 'table', 'title', 'originaltitle', 'year', 'rating', 'plot', 'set', 'imdbid', 'studio[]', 'genre[]', 'actor[]', 'runtime', 'country[]', 'director[]', 'poster', 'trailer', 'file', 'fanart', 'thumb[]', 'last_played', 'play_count', 'date_added', 'stream[]', 'hash']
         },
         {
             'json': '{"jsonrpc": "2.0", "method": "VideoLibrary.GetTVShows", "params": {"properties": ["title", "originaltitle", "plot", "genre", "cast", "thumbnail", "fanart", "rating", "premiered", "playcount", "lastplayed", "dateadded"]}, "id": 1}',

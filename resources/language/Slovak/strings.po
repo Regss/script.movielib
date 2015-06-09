@@ -1,38 +1,38 @@
 # script.movielib language file
 # Translators:
-# Regss <regss84@gmail.com>, 2014
+# ja <jofranek@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Movielib for XBMC\n"
-"PO-Revision-Date: 2014-12-16 08:21+0000\n"
-"Last-Translator: Regss <regss84@gmail.com>\n"
-"Language-Team: Polish (http://www.transifex.com/projects/p/movielib-for-xbmc/language/pl/)\n"
+"PO-Revision-Date: 2015-03-20 20:44+0000\n"
+"Last-Translator: ja <jofranek@gmail.com>\n"
+"Language-Team: Slovak (http://www.transifex.com/projects/p/movielib-for-xbmc/language/sk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: pl\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: sk\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #: addon.xml
 msgctxt "Addon Summary"
 msgid "Synchronizes video library with the Movielib website"
-msgstr "Synchronizuje bazę video ze stroną Movielib"
+msgstr "Synchronizuje video knižnicu s Movielib stránkou"
 
 #: addon.xml
 msgctxt "Addon Description"
 msgid ""
 "Synchronizes video library with the Movielib website. Script can be "
 "downloaded from https://github.com/Regss/movielib"
-msgstr "Synchronizuje bazę video ze stroną Movielib. Skrypt można pobrać z https://github.com/Regss/movielib"
+msgstr "Synchronizuje video knižnicu s Movielib stránkou. Skript môžte sťahovať z https://github.com/Regss/movielib"
 
 #: Settings
 msgctxt "#32010"
 msgid "Connection"
-msgstr "Połączenie"
+msgstr "Pripojenie"
 
 #: Settings
 msgctxt "#32000"
 msgid "URL"
-msgstr "Adres URL"
+msgstr "URL"
 
 #: Settings
 msgctxt "#32001"
@@ -42,67 +42,67 @@ msgstr "Token"
 #: Settings
 msgctxt "#32012"
 msgid "Synchronization"
-msgstr "Synchronizacja"
+msgstr "Synchronizácia"
 
 #: Settings
 msgctxt "#32011"
 msgid "Notification"
-msgstr "Powiadomienia"
+msgstr "Notifikácia"
 
 #: Settings
 msgctxt "#32002"
 msgid "Notification"
-msgstr "Informacje"
+msgstr "Notifikácia"
 
 #: Settings
 msgctxt "#32003"
 msgid "Debug"
-msgstr "Debugowanie"
+msgstr "Debugovanie"
 
 #: Settings
 msgctxt "#32013"
 msgid "Progress bar"
-msgstr "Pasek postępu"
+msgstr "Progress bar"
 
 #: Notification
 msgctxt "#32115"
 msgid "Debugging enabled"
-msgstr "Debugowanie włączone"
+msgstr "Debugovanie povolené"
 
 #: Notification
 msgctxt "#32100"
 msgid "Can't connect to site"
-msgstr "Nie można połączyć"
+msgstr "Neviem sa pripojiť na stránku"
 
 #: Notification
 msgctxt "#32109"
 msgid "Wrong version of web script. Update is needed"
-msgstr "Zła wersja skryptu. Potrzebna aktualizacja"
+msgstr "Zlá verzia web skriptu. Aktualizujte"
 
 #: Notification
 msgctxt "#32101"
 msgid "Wrong Token"
-msgstr "Nieprawidłowy token"
+msgstr "Zlý Token"
 
 #: Notification
 msgctxt "#32102"
 msgid "Sync Error"
-msgstr "Błąd Synchronizacji"
+msgstr "Chyba synchronizácie"
 
 #: Notification
 msgctxt "#32103"
 msgid "Updated"
-msgstr "Uaktualnione"
+msgstr "Aktualizované"
 
 #: Notification
 msgctxt "#32104"
 msgid "Added"
-msgstr "Dodano"
+msgstr "Pridané"
 
 #: Notification
 msgctxt "#32105"
 msgid "Removed"
-msgstr "Usunięto"
+msgstr "Vymazané"
 
 #: Notification
 msgctxt "#32106"
@@ -112,47 +112,47 @@ msgstr "Filmy"
 #: Notification
 msgctxt "#32107"
 msgid "TVshows"
-msgstr "Seriale"
+msgstr "Seriály"
 
 #: Notification
 msgctxt "#32108"
 msgid "Episodes"
-msgstr "Odcinki"
+msgstr "Epizódy"
 
 #: Notification
 msgctxt "#32110"
 msgid "Actors"
-msgstr "Aktorów"
+msgstr "Herci"
 
 #: Notification
 msgctxt "#32111"
 msgid "Genres"
-msgstr "Gatunki"
+msgstr "Žánre"
 
 #: Notification
 msgctxt "#32112"
 msgid "Countries"
-msgstr "Kraje"
+msgstr "Krajiny"
 
 #: Notification
 msgctxt "#32113"
 msgid "Studios"
-msgstr "Studia"
+msgstr "Štúdia"
 
 #: Notification
 msgctxt "#32114"
 msgid "Directors"
-msgstr "Reżyserów"
+msgstr "Režiséri"
 
 #: Notification
 msgctxt "#32116"
 msgid "Data too large to send to server"
-msgstr "Dane za duże aby wysłać na serwer"
+msgstr "Dáta sú príliš veľké pre server"
 
 #: Progress Bar
 msgctxt "#32200"
 msgid "Starting"
-msgstr "Uruchamiam"
+msgstr "Štartujem"
 
 #: Progress Bar
 msgctxt "#32201"
@@ -162,24 +162,24 @@ msgstr "Filmy"
 #: Progress Bar
 msgctxt "#32202"
 msgid "TVShows"
-msgstr "Seriale"
+msgstr "Seriály"
 
 #: Progress Bar
 msgctxt "#32203"
 msgid "Episodes"
-msgstr "Odcinki"
+msgstr "Epizódy"
 
 #: Progress Bar
 msgctxt "#32204"
 msgid "Adding"
-msgstr "Dodaje"
+msgstr "Pridanie"
 
 #: Progress Bar
 msgctxt "#32205"
 msgid "Removing"
-msgstr "Usuwam"
+msgstr "Vymazanie"
 
 #: Progress Bar
 msgctxt "#32209"
 msgid "Updating"
-msgstr "Uaktualniam"
+msgstr "Aktualizovanie"
