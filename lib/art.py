@@ -15,27 +15,28 @@ __datapath__            = xbmc.translatePath(os.path.join('special://profile/add
 import debug
 
 def create(source, i, width, height, q):
+    
     if (source[:5] == 'image'):
         file = source
         temp = __datapath__ + '/temp_' + str(i)
-        # if file is stored in smb or nfs copy it to addon_data
-        if (source[8:11].lower() == 'smb') or (source[8:11].lower() == 'nfs'):
-            copyRes = xbmcvfs.copy(source[8:][:-1], temp)
-            if copyRes == True:
-                source = temp
-            else:
-                source = ''
         # if it is a URL
-        elif source[8:12] == 'http':
+        if source[8:12] == 'http':
             try:
-                source = cStringIO.StringIO(urllib.urlopen(source[8:][:-1]).read())
+                link = urllib.unquote(source[8:][:-1]).encode('utf-8')
+                source = cStringIO.StringIO(urllib.urlopen(link).read())
             except:
                 source = ''
         else:
-            source = source[8:][:-1]
+            f = xbmcvfs.File(source)
+            t = f.read()
+            f.close()
+            source = cStringIO.StringIO(t)
+            
         # resize image
         try:
             image = Image.open(source)
+            if image.mode != 'RGB':
+                image = image.convert('RGB')
             h = image.size[1]
             if h > 10:
                 if (h > height):

@@ -3,15 +3,18 @@
 import xbmc
 import xbmcgui
 import xbmcaddon
+import xbmcvfs
 import sys
 import os
 import hashlib
 import time
+import json
+import re
+import collections
 
 __addon__               = xbmcaddon.Addon()
 __addon_id__            = __addon__.getAddonInfo('id')
 __addonname__           = __addon__.getAddonInfo('name')
-__addonpath__           = xbmc.translatePath(__addon__.getAddonInfo('path')).decode('utf-8')
 __datapath__            = xbmc.translatePath(os.path.join('special://profile/addon_data/', __addon_id__)).replace('\\', '/')
 __lang__                = __addon__.getLocalizedString
 
@@ -20,8 +23,25 @@ import bar
 import sendRequest
 import art
 import syncVideo
+import syncImage
 
 def start(self):
+    # check if exists addon data folder
+    if xbmcvfs.exists(__datapath__ + '/') == 0:
+        xbmcvfs.mkdir(__datapath__ )
+        
+    # open settings if frist run
+    if xbmcvfs.exists(__datapath__ + '/settings.xml') == 0:
+        __addon__.openSettings()
+        
+    # if start from porgram section by user force sync all data
+    try:
+        mode = str(sys.argv[1])
+    except:
+        self.forcedStart = True
+        debug.debug('=== FORCED START ===')
+    else:
+        self.forcedStart = False
     
     self.setXBMC = {}
     self.setXBMC['URL']      = __addon__.getSetting('url')
@@ -29,7 +49,7 @@ def start(self):
     self.setXBMC['Notify']   = __addon__.getSetting('notify')
     self.setXBMC['Debug']    = __addon__.getSetting('debug')
     
-    self.versionWebScript = '2.7.3'
+    self.versionWebScript = '2.8.0'
     
     self.progBar = bar.Bar()
     
@@ -98,42 +118,139 @@ def check(self):
     self.hashSITE = sendRequest.send(self, 'showhash')
     if self.hashSITE is False:
         return False
+    # reset hash if forced start
+    if self.forcedStart == True:
+        for t in self.hashSITE:
+            self.hashSITE[t] = ""
     debug.debug('[hashSITE]: ' + str(self.hashSITE))
     
-    val = [
-        {
-            'json': '{"jsonrpc": "2.0", "method": "VideoLibrary.GetMovies", "params": {"properties": ["cast", "title", "plot", "rating", "year", "thumbnail", "fanart", "runtime", "genre", "director", "originaltitle", "country", "set", "imdbnumber", "studio", "trailer", "playcount", "lastplayed", "dateadded", "streamdetails", "file"]}, "id": "1"}',
-            'id': 'movieid',
-            'table': 'movies',
-            'lang': 32201,
-            'values' : ['id', 'table', 'title', 'originaltitle', 'year', 'rating', 'plot', 'set', 'imdbid', 'studio[]', 'genre[]', 'actor[]', 'runtime', 'country[]', 'director[]', 'poster', 'trailer', 'file', 'fanart', 'thumb[]', 'last_played', 'play_count', 'date_added', 'stream[]', 'hash']
-        },
-        {
-            'json': '{"jsonrpc": "2.0", "method": "VideoLibrary.GetTVShows", "params": {"properties": ["title", "originaltitle", "plot", "genre", "cast", "thumbnail", "fanart", "rating", "premiered", "playcount", "lastplayed", "dateadded"]}, "id": 1}',
-            'id': 'tvshowid',
-            'table': 'tvshows',
-            'lang': 32202,
-            'values' : ['id', 'table', 'title', 'originaltitle', 'rating', 'plot', 'genre[]', 'actor[]', 'poster', 'fanart', 'premiered', 'last_played', 'play_count', 'date_added', 'hash']
-        },
-        {
-            'json': '{"jsonrpc": "2.0", "method": "VideoLibrary.GetEpisodes", "params": {"properties": ["title", "plot", "episode", "season", "tvshowid", "thumbnail", "file", "firstaired", "playcount", "lastplayed", "dateadded", "streamdetails"]}, "id": 1}',
-            'id': 'episodeid',
-            'table': 'episodes',
-            'lang': 32203,
-            'values' : ['id', 'table', 'title', 'plot', 'episode', 'season', 'tvshow', 'thumbnail', 'firstaired', 'last_played', 'play_count', 'date_added', 'file', 'stream[]', 'hash']
-        }
-    ]
+    self.lang = { 'movies': 32201, 'tvshows': 32202, 'episodes': 32203, 'poster': 32117, 'fanart': 32118, 'thumb': 32119, 'exthumb': 32120, 'actors': 32110 }
     
-    self.panelUpdated = False
-    self.panelsSITE = {}
+    self.panels = ['actor', 'genre', 'country', 'studio', 'director']
+    
+    self.tn = {
+        'movies': 
+        {
+            'json': '{"jsonrpc": "2.0", "method": "VideoLibrary.GetMovies", "params": {"properties": ["cast", "title", "plot", "rating", "year", "art", "runtime", "genre", "director", "originaltitle", "country", "set", "imdbnumber", "studio", "trailer", "playcount", "lastplayed", "dateadded", "streamdetails", "file"]}, "id": "1"}',
+            'values' : ['id', 'table', 'title', 'originaltitle', 'year', 'rating', 'plot', 'set', 'imdbid', 'studio[]', 'genre[]', 'actor[]', 'runtime', 'country[]', 'director[]', 'trailer', 'file', 'last_played', 'play_count', 'date_added', 'stream[]', 'hash']
+        },
+        'tvshows':
+        {
+            'json': '{"jsonrpc": "2.0", "method": "VideoLibrary.GetTVShows", "params": {"properties": ["title", "originaltitle", "plot", "genre", "cast", "art", "rating", "premiered", "playcount", "lastplayed", "dateadded"]}, "id": 1}',
+            'values' : ['id', 'table', 'title', 'originaltitle', 'rating', 'plot', 'genre[]', 'actor[]', 'premiered', 'last_played', 'play_count', 'date_added', 'hash']
+        },
+        'episodes':
+        {
+            'json': '{"jsonrpc": "2.0", "method": "VideoLibrary.GetEpisodes", "params": {"properties": ["title", "plot", "episode", "season", "tvshowid", "art", "file", "firstaired", "playcount", "lastplayed", "dateadded", "streamdetails"]}, "id": 1}',
+            'values' : ['id', 'table', 'title', 'plot', 'episode', 'season', 'tvshow', 'firstaired', 'last_played', 'play_count', 'date_added', 'file', 'stream[]', 'hash']
+        }
+    }
+    
+    # get videos from XBMC
+    dataXBMC = getDataFromXBMC(self)
     
     # sync videos
     debug.debug('=== SYNC VIDEOS ===')
-    for v in val:
-        if syncVideo.sync(self, v) is False:
-            return False
-
+    self.cleanNeeded = False
+    self.imageNeeded = False
+    if syncVideo.sync(self, dataXBMC['videos']) is False:
+        return False
+    
+    # sync images
+    debug.debug('=== SYNC IMAGES ===')
+    syncImage.sync(self, dataXBMC['images'])
+    
+    # send webserver settings
+    if self.setSITE['xbmc_auto_conf_remote'] == '1':
+        debug.debug('=== SYNC WEBSERVER SETTINGS ===')
+        conf_remote = ['services.webserver', 'services.webserverport', 'services.webserverusername', 'services.webserverpassword']
+        send_conf = {}
+        for s in conf_remote:
+            jsonGet = xbmc.executeJSONRPC('{"jsonrpc":"2.0","method":"Settings.GetSettingValue", "params":{"setting": "' + s + '"},"id":1}')
+            jsonGet = unicode(jsonGet, 'utf-8', errors='ignore')
+            jsonGetResponse = json.loads(jsonGet)
+            send_conf[s.replace('services.', '')] = jsonGetResponse['result']['value']
+        if send_conf['webserver'] == False:
+            debug.notify(__labg__(32122).encode('utf-8'))
+            debug.debug('Webserver is disabled')
+        else:
+            sendRequest.send(self, 'autoconfremote', send_conf)
+    
     # start generate banner
     debug.debug('=== GENREATE BANNER ===')
     sendRequest.send(self, 'generatebanner', {'banner': ''})
+    
+    # start clean database
+    if self.cleanNeeded is True:
+        debug.debug('=== CLEAN DATABASE ===')
+        sendRequest.send(self, 'cleandb', {'clean': ''})
+    
+def getDataFromXBMC(self):
+    
+    dataXBMC                            = collections.OrderedDict( [('videos', {} ), ('images', {} )] )
+    dataXBMC['videos']                  = collections.OrderedDict( [('movies', {} ), ('tvshows', {} ), ('episodes', {} )] )
+    
+    dataXBMC['images']                  = collections.OrderedDict( [('movies', {} ), ('tvshows', {} ), ('episodes', {} ), ('actors', {} )] )
+    dataXBMC['images']['movies']        = collections.OrderedDict( [('poster', {} ), ('fanart', {} ), ('exthumb', {} )] )
+    dataXBMC['images']['tvshows']       = collections.OrderedDict( [('poster', {} ), ('fanart', {} )] )
+    dataXBMC['images']['episodes']      = collections.OrderedDict( [('poster', {} )] )
+    dataXBMC['images']['actors']        = collections.OrderedDict( [('thumb', {} )] )
+
+    self.namesXBMC = { 'movies': {}, 'tvshows': {}, 'episodes': {}, 'actors': {}, 'exthumb': {} }
+    
+    self.progBar.create(__lang__(32200), __addonname__ + ', ' + __lang__(32206) + '...')
+    p = 0
+    
+    for table in dataXBMC['videos'].keys():
         
+        p += 33
+        self.progBar.update(p, __lang__(32206) + ' - ' + __lang__(self.lang[table]))
+        
+        jsonGetData = xbmc.executeJSONRPC(self.tn[table]['json'])
+        jsonGetData = unicode(jsonGetData, 'utf-8', errors='ignore')
+        jsonGetDataResponse = json.loads(jsonGetData)
+        
+        # prepare array
+        dataXBMC['videos'][table] = {}
+        if 'result' in jsonGetDataResponse and table in jsonGetDataResponse['result']:
+            for data in jsonGetDataResponse['result'][table]:
+                
+                # prepare array for videos
+                dataXBMC['videos'][table][str(data[table[0:-1]+'id'])] = data
+                self.namesXBMC[table][data[table[0:-1]+'id']] = data['title']
+                
+                # prepare array for images
+                if 'art' in data:
+                    if 'poster' in data['art'] and data['art']['poster'] != '':
+                        dataXBMC['images'][table]['poster'][data[table[0:-1]+'id']] = data['art']['poster']
+                    else:
+                        if 'thumb' in data['art'] and data['art']['thumb'] != '':
+                            dataXBMC['images'][table]['poster'][data[table[0:-1]+'id']] = data['art']['thumb']
+                    if 'fanart' in data['art']:
+                        dataXBMC['images'][table]['fanart'][data[table[0:-1]+'id']] = data['art']['fanart']
+                if 'cast' in data:
+                    for actor in data['cast']:
+                        if 'thumbnail' in actor:
+                            hash = hashlib.md5(actor['name'].encode('utf-8')).hexdigest()[0:10]
+                            dataXBMC['images']['actors']['thumb'][hash] = actor['thumbnail']
+                            self.namesXBMC['actors'][hash] = actor['name']
+                if 'file' in data:
+                    extrathumbs_path = os.path.dirname(data['file'].replace('\\', '/')) + '/extrathumbs/'
+                    if xbmcvfs.exists(extrathumbs_path):
+                        ex_dir = xbmcvfs.listdir(extrathumbs_path)
+                        for thumb in ex_dir[1]:
+                            m = re.search('thumb([0-9]).jpg', thumb)
+                            if m:
+                                id = str(data[table[0:-1]+'id']) + '_t' + m.group(1)
+                                dataXBMC['images'][table]['exthumb'][id] = extrathumbs_path + thumb
+                                self.namesXBMC[table][id] = data['title']
+    
+    self.progBar.close()
+    
+    # debug
+    for t, v in dataXBMC.items():
+        for type, val in v.items():
+            debug.debug('[' + t + type.title() + 'XBMC]: ' + str(val))
+    
+    return dataXBMC
+    

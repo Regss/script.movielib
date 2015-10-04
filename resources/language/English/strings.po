@@ -102,7 +102,7 @@ msgstr ""
 
 #: Notification
 msgctxt "#32107"
-msgid "TVshows"
+msgid "TVShows"
 msgstr ""
 
 #: Notification
@@ -136,8 +136,38 @@ msgid "Directors"
 msgstr ""
 
 #: Notification
+msgctxt "#32122"
+msgid "Webserver is disabled"
+msgstr ""
+
+#: Notification
 msgctxt "#32116"
 msgid "Data too large to send to server"
+msgstr ""
+
+#: Notification
+msgctxt "#32117"
+msgid "Posters"
+msgstr ""
+
+#: Notification
+msgctxt "#32118"
+msgid "Fanarts"
+msgstr ""
+
+#: Notification
+msgctxt "#32119"
+msgid "Thumbs"
+msgstr ""
+
+#: Notification
+msgctxt "#32120"
+msgid "Extra thumbs"
+msgstr ""
+
+#: Notification
+msgctxt "#32121"
+msgid "Images"
 msgstr ""
 
 #: Progress Bar
@@ -168,6 +198,11 @@ msgstr ""
 #: Progress Bar
 msgctxt "#32205"
 msgid "Removing"
+msgstr ""
+
+#: Progress Bar
+msgctxt "#32206"
+msgid "Checking changes"
 msgstr ""
 
 #: Progress Bar

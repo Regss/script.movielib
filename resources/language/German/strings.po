@@ -1,14 +1,14 @@
 # script.movielib language file
 # Translators:
-# Ettore Atalan <atalanttore@googlemail.com>, 2014
+# Ettore Atalan <atalanttore@googlemail.com>, 2014-2015
 # Markus <Markus@koepke-online.com>, 2014
 # Markus <Markus@koepke-online.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Movielib for XBMC\n"
-"PO-Revision-Date: 2014-11-18 15:51+0000\n"
+"PO-Revision-Date: 2015-10-02 12:42+0000\n"
 "Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
-"Language-Team: German (http://www.transifex.com/projects/p/movielib-for-xbmc/language/de/)\n"
+"Language-Team: German (http://www.transifex.com/movielib/movielib-for-xbmc/language/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: de\n"
@@ -113,7 +113,7 @@ msgstr "Filme"
 
 #: Notification
 msgctxt "#32107"
-msgid "TVshows"
+msgid "TVShows"
 msgstr "Fernsehshows"
 
 #: Notification
@@ -147,9 +147,39 @@ msgid "Directors"
 msgstr "Regisseure"
 
 #: Notification
+msgctxt "#32122"
+msgid "Webserver is disabled"
+msgstr "Webserver ist deaktiviert"
+
+#: Notification
 msgctxt "#32116"
 msgid "Data too large to send to server"
 msgstr "Daten sind zu groß, um sie an den Server zu senden"
+
+#: Notification
+msgctxt "#32117"
+msgid "Posters"
+msgstr "Poster"
+
+#: Notification
+msgctxt "#32118"
+msgid "Fanarts"
+msgstr "Fankunst"
+
+#: Notification
+msgctxt "#32119"
+msgid "Thumbs"
+msgstr "Vorschaubilder"
+
+#: Notification
+msgctxt "#32120"
+msgid "Extra thumbs"
+msgstr "Zusätzliche Vorschaubilder"
+
+#: Notification
+msgctxt "#32121"
+msgid "Images"
+msgstr "Bilder"
 
 #: Progress Bar
 msgctxt "#32200"
@@ -180,6 +210,11 @@ msgstr "Hinzufügen"
 msgctxt "#32205"
 msgid "Removing"
 msgstr "Entfernen"
+
+#: Progress Bar
+msgctxt "#32206"
+msgid "Checking changes"
+msgstr "Änderungen werden überprüft"
 
 #: Progress Bar
 msgctxt "#32209"
