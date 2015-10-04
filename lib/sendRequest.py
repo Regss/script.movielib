@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import xbmc
 import xbmcaddon
 import urllib
 import urllib2
@@ -13,6 +14,10 @@ import debug
 
 def send(self, option, values=''):
     
+    # prevent go Kodi to suspend
+    if xbmc.getGlobalIdleTime() > 120:
+        xbmc.executeJSONRPC('{ "jsonrpc": "2.0", "method": "Input.ExecuteAction", "params": { "action": "noop" }, "id": 1 }')
+        
     debug.debug('[REQUEST]: ' + self.setXBMC['URL'] + option)
     debug.debug('[REQUEST]: ' + str(values))
     
@@ -31,6 +36,7 @@ def send(self, option, values=''):
         try:
             opener = urllib2.build_opener()
             response = opener.open(self.setXBMC['URL'] + option, data)
+            output = response.read()
         except Exception as Error:
             conn = False
             debug.debug('Can\'t connect to: ' + self.setXBMC['URL'] + option)
@@ -46,7 +52,6 @@ def send(self, option, values=''):
         debug.notify(__lang__(32100).encode('utf-8'))
         return False
         
-    output = response.read()
     debug.debug('[RESPONSE]: ' + str(output))
     
     # if no values return json

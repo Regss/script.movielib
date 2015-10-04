@@ -4,7 +4,6 @@ import xbmc
 import xbmcaddon
 
 __addon__               = xbmcaddon.Addon()
-__addonpath__           = xbmc.translatePath(__addon__.getAddonInfo('path')).decode('utf-8')
 __icon__                = __addon__.getAddonInfo('icon')
 
 def debug(msg):

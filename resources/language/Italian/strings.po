@@ -4,9 +4,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Movielib for XBMC\n"
-"PO-Revision-Date: 2014-11-28 19:11+0000\n"
-"Last-Translator: ElfoLiNk <matteo_gazzetta@hotmail.it>\n"
-"Language-Team: Italian (http://www.transifex.com/projects/p/movielib-for-xbmc/language/it/)\n"
+"PO-Revision-Date: 2015-10-02 12:08+0000\n"
+"Last-Translator: Regss <regss84@gmail.com>\n"
+"Language-Team: Italian (http://www.transifex.com/movielib/movielib-for-xbmc/language/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: it\n"
@@ -111,7 +111,7 @@ msgstr "Movies"
 
 #: Notification
 msgctxt "#32107"
-msgid "TVshows"
+msgid "TVShows"
 msgstr "Serie TV"
 
 #: Notification
@@ -145,9 +145,39 @@ msgid "Directors"
 msgstr "Registi"
 
 #: Notification
+msgctxt "#32122"
+msgid "Webserver is disabled"
+msgstr ""
+
+#: Notification
 msgctxt "#32116"
 msgid "Data too large to send to server"
 msgstr "Dati troppo grandi per mandarli al server"
+
+#: Notification
+msgctxt "#32117"
+msgid "Posters"
+msgstr ""
+
+#: Notification
+msgctxt "#32118"
+msgid "Fanarts"
+msgstr ""
+
+#: Notification
+msgctxt "#32119"
+msgid "Thumbs"
+msgstr ""
+
+#: Notification
+msgctxt "#32120"
+msgid "Extra thumbs"
+msgstr ""
+
+#: Notification
+msgctxt "#32121"
+msgid "Images"
+msgstr ""
 
 #: Progress Bar
 msgctxt "#32200"
@@ -178,6 +208,11 @@ msgstr "Aggiungendo"
 msgctxt "#32205"
 msgid "Removing"
 msgstr "Togliendo"
+
+#: Progress Bar
+msgctxt "#32206"
+msgid "Checking changes"
+msgstr ""
 
 #: Progress Bar
 msgctxt "#32209"

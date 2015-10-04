@@ -4,9 +4,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Movielib for XBMC\n"
-"PO-Revision-Date: 2014-11-18 14:20+0000\n"
+"PO-Revision-Date: 2015-10-02 12:08+0000\n"
 "Last-Translator: Regss <regss84@gmail.com>\n"
-"Language-Team: French (France) (http://www.transifex.com/projects/p/movielib-for-xbmc/language/fr_FR/)\n"
+"Language-Team: French (France) (http://www.transifex.com/movielib/movielib-for-xbmc/language/fr_FR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fr_FR\n"
@@ -111,7 +111,7 @@ msgstr "Films"
 
 #: Notification
 msgctxt "#32107"
-msgid "TVshows"
+msgid "TVShows"
 msgstr ""
 
 #: Notification
@@ -145,8 +145,38 @@ msgid "Directors"
 msgstr ""
 
 #: Notification
+msgctxt "#32122"
+msgid "Webserver is disabled"
+msgstr ""
+
+#: Notification
 msgctxt "#32116"
 msgid "Data too large to send to server"
+msgstr ""
+
+#: Notification
+msgctxt "#32117"
+msgid "Posters"
+msgstr ""
+
+#: Notification
+msgctxt "#32118"
+msgid "Fanarts"
+msgstr ""
+
+#: Notification
+msgctxt "#32119"
+msgid "Thumbs"
+msgstr ""
+
+#: Notification
+msgctxt "#32120"
+msgid "Extra thumbs"
+msgstr ""
+
+#: Notification
+msgctxt "#32121"
+msgid "Images"
 msgstr ""
 
 #: Progress Bar
@@ -177,6 +207,11 @@ msgstr ""
 #: Progress Bar
 msgctxt "#32205"
 msgid "Removing"
+msgstr ""
+
+#: Progress Bar
+msgctxt "#32206"
+msgid "Checking changes"
 msgstr ""
 
 #: Progress Bar

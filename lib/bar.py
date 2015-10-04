@@ -7,11 +7,6 @@ import sys
 import os
 
 __addon__               = xbmcaddon.Addon()
-__addonname__           = __addon__.getAddonInfo('name')
-__addonpath__           = xbmc.translatePath(__addon__.getAddonInfo('path')).decode('utf-8')
-__lang__                = __addon__.getLocalizedString
-
-sys.path.append(os.path.join(__addonpath__, "lib"))
 
 class Bar:
     def __init__(self):

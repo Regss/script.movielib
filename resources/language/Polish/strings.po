@@ -1,12 +1,12 @@
 # script.movielib language file
 # Translators:
-# Regss <regss84@gmail.com>, 2014
+# Regss <regss84@gmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Movielib for XBMC\n"
-"PO-Revision-Date: 2014-12-16 08:21+0000\n"
+"PO-Revision-Date: 2015-10-02 12:09+0000\n"
 "Last-Translator: Regss <regss84@gmail.com>\n"
-"Language-Team: Polish (http://www.transifex.com/projects/p/movielib-for-xbmc/language/pl/)\n"
+"Language-Team: Polish (http://www.transifex.com/movielib/movielib-for-xbmc/language/pl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pl\n"
@@ -111,7 +111,7 @@ msgstr "Filmy"
 
 #: Notification
 msgctxt "#32107"
-msgid "TVshows"
+msgid "TVShows"
 msgstr "Seriale"
 
 #: Notification
@@ -145,9 +145,39 @@ msgid "Directors"
 msgstr "Reżyserów"
 
 #: Notification
+msgctxt "#32122"
+msgid "Webserver is disabled"
+msgstr "Web serwer jest wyłączony"
+
+#: Notification
 msgctxt "#32116"
 msgid "Data too large to send to server"
 msgstr "Dane za duże aby wysłać na serwer"
+
+#: Notification
+msgctxt "#32117"
+msgid "Posters"
+msgstr "Okładki"
+
+#: Notification
+msgctxt "#32118"
+msgid "Fanarts"
+msgstr "Fanarty"
+
+#: Notification
+msgctxt "#32119"
+msgid "Thumbs"
+msgstr "Miniatury"
+
+#: Notification
+msgctxt "#32120"
+msgid "Extra thumbs"
+msgstr "Dodatkowe miniatury"
+
+#: Notification
+msgctxt "#32121"
+msgid "Images"
+msgstr "Obrazy"
 
 #: Progress Bar
 msgctxt "#32200"
@@ -178,6 +208,11 @@ msgstr "Dodaje"
 msgctxt "#32205"
 msgid "Removing"
 msgstr "Usuwam"
+
+#: Progress Bar
+msgctxt "#32206"
+msgid "Checking changes"
+msgstr "Szukam zmian"
 
 #: Progress Bar
 msgctxt "#32209"
