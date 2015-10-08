@@ -76,7 +76,7 @@ def sync(self, ImagesXBMC):
                         t = art.create(ImagesXBMC[type][img_type][id], 'a', 75, 100, 70)
                     if 'exthumb' == img_type:
                         ex_size = self.setSITE['xbmc_exthumbs_q'].split('x')
-                        t = art.create('image://' + urllib.quote_plus(ImagesXBMC[type][img_type][id]) + '/', 'e', int(ex_size[0]), int(ex_size[1]), 70)
+                        t = art.create('image://' + urllib.quote_plus(ImagesXBMC[type][img_type][id].encode('utf-8')) + '/', 'e', int(ex_size[0]), int(ex_size[1]), 70)
                     
                     if len(t) > 0:
                         if 'actors' in type:
