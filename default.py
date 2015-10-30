@@ -10,7 +10,7 @@ __addon__               = xbmcaddon.Addon()
 __addon_id__            = __addon__.getAddonInfo('id')
 __addonname__           = __addon__.getAddonInfo('name')
 __addonpath__           = xbmc.translatePath(__addon__.getAddonInfo('path'))
-__path__                = os.path.join(__addonpath__, 'lib')
+__path__                = os.path.join(__addonpath__, 'resources', 'lib')
 
 sys.path.append(__path__)
 

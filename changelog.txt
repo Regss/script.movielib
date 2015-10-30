@@ -1,6 +1,7 @@
 [B]1.4.2[/B]
 - Added: option for using Http Basic Auth
 - Fixed: minor bugs
+- Clean: move lib folder to resources
 
 [B]1.4.1[/B]
 - Fixed: image link/path utf-8 encoded
