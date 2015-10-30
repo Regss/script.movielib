@@ -6,6 +6,7 @@ import urllib
 import urllib2
 import json
 import time
+import base64
 
 __addon__               = xbmcaddon.Addon()
 __lang__                = __addon__.getLocalizedString
@@ -34,9 +35,12 @@ def send(self, option, values=''):
 
     for l in range(1, 4):
         try:
-            opener = urllib2.build_opener()
-            response = opener.open(self.setXBMC['URL'] + option, data)
-            output = response.read()
+            request = urllib2.Request(self.setXBMC['URL'] + option, data)
+            if 'true' in self.setXBMC['Auth']:
+                base64string = base64.encodestring(self.setXBMC['AuthLogin'] + ':' + self.setXBMC['AuthPass']).replace('\n', '')
+                request.add_header('Authorization', 'Basic ' + base64string)   
+            result = urllib2.urlopen(request)
+            output = result.read()
         except Exception as Error:
             conn = False
             debug.debug('Can\'t connect to: ' + self.setXBMC['URL'] + option)

@@ -48,6 +48,9 @@ def start(self):
     self.setXBMC['Token']    = __addon__.getSetting('token')
     self.setXBMC['Notify']   = __addon__.getSetting('notify')
     self.setXBMC['Debug']    = __addon__.getSetting('debug')
+    self.setXBMC['Auth']      = __addon__.getSetting('auth')
+    self.setXBMC['AuthLogin'] = __addon__.getSetting('authLogin')
+    self.setXBMC['AuthPass']  = __addon__.getSetting('authPass')
     
     self.versionWebScript = '2.8.0'
     
@@ -171,7 +174,7 @@ def check(self):
             jsonGetResponse = json.loads(jsonGet)
             send_conf[s.replace('services.', '')] = jsonGetResponse['result']['value']
         if send_conf['webserver'] == False:
-            debug.notify(__labg__(32122).encode('utf-8'))
+            debug.notify(__lang__(32122).encode('utf-8'))
             debug.debug('Webserver is disabled')
         else:
             sendRequest.send(self, 'autoconfremote', send_conf)
@@ -226,7 +229,7 @@ def getDataFromXBMC(self):
                     else:
                         if 'thumb' in data['art'] and data['art']['thumb'] != '':
                             dataXBMC['images'][table]['poster'][data[table[0:-1]+'id']] = data['art']['thumb']
-                    if 'fanart' in data['art']:
+                    if 'fanart' in data['art'] and data['art']['fanart'] != '' and 'fanart' in dataXBMC['images'][table]:
                         dataXBMC['images'][table]['fanart'][data[table[0:-1]+'id']] = data['art']['fanart']
                 if 'cast' in data:
                     for actor in data['cast']:
@@ -240,7 +243,7 @@ def getDataFromXBMC(self):
                         ex_dir = xbmcvfs.listdir(extrathumbs_path)
                         for thumb in ex_dir[1]:
                             m = re.search('thumb([0-9]).jpg', thumb)
-                            if m:
+                            if m and 'exthumb' in dataXBMC['images'][table]:
                                 id = str(data[table[0:-1]+'id']) + '_t' + m.group(1)
                                 dataXBMC['images'][table]['exthumb'][id] = extrathumbs_path + thumb
                                 self.namesXBMC[table][id] = data['title']

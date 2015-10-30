@@ -3,6 +3,10 @@
     <category label="32010">
         <setting label="32000" type="text" id="url" default="http://" />
         <setting label="32001" type="text" id="token" />
+        <setting type="sep" />
+        <setting label="32004" type="bool" id="auth" default="false" />
+        <setting label="32005" type="text" id="authLogin" visible="eq(-1,true)" />
+        <setting label="32006" type="text" id="authPass" option="hidden" visible="eq(-2,true)" />
     </category>
     <category label="32011">
         <setting label="32002" type="bool" id="notify" default="true" />

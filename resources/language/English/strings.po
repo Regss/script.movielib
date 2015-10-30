@@ -31,6 +31,21 @@ msgid "Token"
 msgstr ""
 
 #: Settings
+msgctxt "#32004"
+msgid "HTTP Basic Auth"
+msgstr ""
+
+#: Settings
+msgctxt "#32005"
+msgid "HTTP Login"
+msgstr ""
+
+#: Settings
+msgctxt "#32006"
+msgid "HTTP Password"
+msgstr ""
+
+#: Settings
 msgctxt "#32012"
 msgid "Synchronization"
 msgstr ""
