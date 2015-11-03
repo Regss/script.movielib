@@ -212,13 +212,13 @@ def check(self):
 def getDataFromXBMC(self, dataSORT):
     
     dataXBMC                            = {}
-    dataXBMC['videos']                  = dict.fromkeys(dataSORT['videos'], {})
+    dataXBMC['videos']                  = { 'movies': {}, 'tvshows': {}, 'episodes': {} }
     
-    dataXBMC['images']                  = dict.fromkeys(dataSORT['images'], {})
-    dataXBMC['images']['movies']        = dict.fromkeys(dataSORT['movies'], {})
-    dataXBMC['images']['tvshows']       = dict.fromkeys(dataSORT['tvshows'], {})
-    dataXBMC['images']['episodes']      = dict.fromkeys(dataSORT['episodes'], {})
-    dataXBMC['images']['actors']        = dict.fromkeys(dataSORT['actors'], {})
+    dataXBMC['images']                  = { 'movies': {}, 'tvshows': {}, 'episodes': {}, 'actors': {} }
+    dataXBMC['images']['movies']        = { 'poster': {}, 'fanart': {}, 'exthumb': {} }
+    dataXBMC['images']['tvshows']       = { 'poster': {}, 'fanart': {} }
+    dataXBMC['images']['episodes']      = { 'poster': {} }
+    dataXBMC['images']['actors']        = { 'thumb': {} }
     
     self.namesXBMC = { 'movies': {}, 'tvshows': {}, 'episodes': {}, 'actors': {}, 'exthumb': {} }
     

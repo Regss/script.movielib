@@ -18,7 +18,6 @@ def create(source, i, width, height, q):
     
     if (source[:5] == 'image'):
         file = source
-        temp = __datapath__ + '/temp_' + str(i)
         # if it is a URL
         if source[8:12] == 'http':
             try:
@@ -42,10 +41,10 @@ def create(source, i, width, height, q):
                 if (h > height):
                     image.load()
                     image = image.resize((width, height), Image.ANTIALIAS)
-                image.save(temp, 'JPEG', quality=int(q))
-                poster_bin = xbmcvfs.File(temp)
-                output = poster_bin.read()
-                poster_bin.close()
+                image_bin = cStringIO.StringIO()
+                image.save(image_bin, 'JPEG', quality=int(q))
+                output = image_bin.getvalue()
+                image_bin.close()
             else:
                 output = ''
         except Exception as Error:
