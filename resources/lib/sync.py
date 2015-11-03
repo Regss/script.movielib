@@ -10,7 +10,6 @@ import hashlib
 import time
 import json
 import re
-import collections
 
 __addon__               = xbmcaddon.Addon()
 __addon_id__            = __addon__.getAddonInfo('id')
@@ -149,19 +148,41 @@ def check(self):
         }
     }
     
+    # check source
+    jsonGetSource = '{"jsonrpc": "2.0", "method": "Files.GetSources", "params": {"media": "video"}, "id": 1}'
+    jsonGetSource = xbmc.executeJSONRPC(jsonGetSource)
+    jsonGetSource = unicode(jsonGetSource, 'utf-8', errors='ignore')
+    jsonGetSourceResponse = json.loads(jsonGetSource)
+    
+    if 'result' in jsonGetSourceResponse and 'sources' in jsonGetSourceResponse['result']:
+        for s in jsonGetSourceResponse['result']['sources']:
+            if xbmcvfs.exists(s['file']) == 0:
+                debug.notify(__lang__(32123).encode('utf-8') + ': ' + s['file'].encode('utf-8'))
+                debug.debug('Source inaccessible: ' + s['file'].encode('utf-8'))
+                return False
+    
     # get videos from XBMC
-    dataXBMC = getDataFromXBMC(self)
+    dataSORT                            = {}
+    dataSORT['videos']                  = ['movies', 'tvshows', 'episodes']
+    
+    dataSORT['images']                  = ['movies', 'tvshows', 'episodes', 'actors']
+    dataSORT['movies']                  = ['poster', 'fanart', 'exthumb']
+    dataSORT['tvshows']                 = ['poster', 'fanart']
+    dataSORT['episodes']                = ['poster']
+    dataSORT['actors']                  = ['thumb']
+    
+    dataXBMC = getDataFromXBMC(self, dataSORT)
     
     # sync videos
     debug.debug('=== SYNC VIDEOS ===')
     self.cleanNeeded = False
     self.imageNeeded = False
-    if syncVideo.sync(self, dataXBMC['videos']) is False:
+    if syncVideo.sync(self, dataXBMC['videos'], dataSORT['videos']) is False:
         return False
     
     # sync images
     debug.debug('=== SYNC IMAGES ===')
-    syncImage.sync(self, dataXBMC['images'])
+    syncImage.sync(self, dataXBMC['images'], dataSORT)
     
     # send webserver settings
     if self.setSITE['xbmc_auto_conf_remote'] == '1':
@@ -188,17 +209,17 @@ def check(self):
         debug.debug('=== CLEAN DATABASE ===')
         sendRequest.send(self, 'cleandb', {'clean': ''})
     
-def getDataFromXBMC(self):
+def getDataFromXBMC(self, dataSORT):
     
-    dataXBMC                            = collections.OrderedDict( [('videos', {} ), ('images', {} )] )
-    dataXBMC['videos']                  = collections.OrderedDict( [('movies', {} ), ('tvshows', {} ), ('episodes', {} )] )
+    dataXBMC                            = {}
+    dataXBMC['videos']                  = dict.fromkeys(dataSORT['videos'], {})
     
-    dataXBMC['images']                  = collections.OrderedDict( [('movies', {} ), ('tvshows', {} ), ('episodes', {} ), ('actors', {} )] )
-    dataXBMC['images']['movies']        = collections.OrderedDict( [('poster', {} ), ('fanart', {} ), ('exthumb', {} )] )
-    dataXBMC['images']['tvshows']       = collections.OrderedDict( [('poster', {} ), ('fanart', {} )] )
-    dataXBMC['images']['episodes']      = collections.OrderedDict( [('poster', {} )] )
-    dataXBMC['images']['actors']        = collections.OrderedDict( [('thumb', {} )] )
-
+    dataXBMC['images']                  = dict.fromkeys(dataSORT['images'], {})
+    dataXBMC['images']['movies']        = dict.fromkeys(dataSORT['movies'], {})
+    dataXBMC['images']['tvshows']       = dict.fromkeys(dataSORT['tvshows'], {})
+    dataXBMC['images']['episodes']      = dict.fromkeys(dataSORT['episodes'], {})
+    dataXBMC['images']['actors']        = dict.fromkeys(dataSORT['actors'], {})
+    
     self.namesXBMC = { 'movies': {}, 'tvshows': {}, 'episodes': {}, 'actors': {}, 'exthumb': {} }
     
     self.progBar.create(__lang__(32200), __addonname__ + ', ' + __lang__(32206) + '...')

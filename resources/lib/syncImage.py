@@ -7,7 +7,6 @@ import urllib
 import urllib2
 import hashlib
 import base64
-import collections
 
 __addon__               = xbmcaddon.Addon()
 __addonname__           = __addon__.getAddonInfo('name')
@@ -17,7 +16,7 @@ import debug
 import sendRequest
 import art
 
-def sync(self, ImagesXBMC):
+def sync(self, ImagesXBMC, ImagesSORT):
     # get panels list from XBMC
     
     ImagesSite = sendRequest.send(self, 'showimages')
@@ -33,9 +32,9 @@ def sync(self, ImagesXBMC):
         return False
     
     #prepare images to add
-    ImagesToAdd = collections.OrderedDict()
+    ImagesToAdd = {}
     for v_type in ImagesXBMC.keys():
-        ImagesToAdd[v_type] = collections.OrderedDict()
+        ImagesToAdd[v_type] = {}
         for img_type in ImagesXBMC[v_type].keys():
             # check if user want sync images
             if self.setSITE['xbmc_'+img_type+'s'] == '1':
@@ -43,25 +42,26 @@ def sync(self, ImagesXBMC):
     debug.debug('[ImagesToAdd]: ' + str(ImagesToAdd))
     
     #prepare images to remove
-    ImagesToRemove = collections.OrderedDict()
+    ImagesToRemove = {}
     for v_type in ImagesXBMC.keys():
-        ImagesToRemove[v_type] = collections.OrderedDict()
+        ImagesToRemove[v_type] = {}
         for img_type in ImagesXBMC[v_type].keys():
             ImagesToRemove[v_type][img_type] = set(ImagesSite[v_type][img_type]) - set(ImagesXBMC[v_type][img_type].keys())
     debug.debug('[ImagesToRemove]: ' + str(ImagesToRemove))
     
     # adding new images
-    for type, vals in ImagesToAdd.items():
-        for img_type, v in vals.items():
+    for type in ImagesSORT['images']:
+        
+        for img_type in ImagesSORT[type]:
             
-            if len(v) > 0:
+            if len(ImagesToAdd[type][img_type]) > 0:
                 debug.debug('=== ADDING ' + type.upper() + ' ' + img_type.upper() + ' IMAGES ===')
                 
-                countToAdd = len(v)
+                countToAdd = len(ImagesToAdd[type][img_type])
                 addedCount = 0
                 self.progBar.create(__lang__(32200), __addonname__ + ', ' + __lang__(32204) + ' ' + __lang__(32121) + ' (' + __lang__(self.lang[type]) + ' - ' + __lang__(self.lang[img_type]) + ')')
                 
-                for id in v:
+                for id in ImagesToAdd[type][img_type]:
                     # progress bar update
                     p = int((float(100) / float(countToAdd)) * float(addedCount))
                     self.progBar.update(p, str(addedCount + 1) + '/' + str(countToAdd) + ' - ' + self.namesXBMC[type][id])

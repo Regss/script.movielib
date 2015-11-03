@@ -13,9 +13,9 @@ import debug
 import prepareValues
 import sendRequest
 
-def sync(self, videosXBMC):
+def sync(self, videosXBMC, videosSORT):
     
-    for table in videosXBMC.keys():
+    for table in videosSORT:
         
         # check hash video library
         if hashlib.md5(str(videosXBMC[table])).hexdigest() == self.hashSITE[table]:

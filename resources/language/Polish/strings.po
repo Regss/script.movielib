@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Movielib for XBMC\n"
-"PO-Revision-Date: 2015-10-02 12:09+0000\n"
+"PO-Revision-Date: 2015-11-03 11:30+0000\n"
 "Last-Translator: Regss <regss84@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/movielib/movielib-for-xbmc/language/pl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,6 +38,21 @@ msgstr "Adres URL"
 msgctxt "#32001"
 msgid "Token"
 msgstr "Token"
+
+#: Settings
+msgctxt "#32004"
+msgid "HTTP Basic Auth"
+msgstr "HTTP autoryzacja"
+
+#: Settings
+msgctxt "#32005"
+msgid "HTTP Login"
+msgstr "HTTP Login"
+
+#: Settings
+msgctxt "#32006"
+msgid "HTTP Password"
+msgstr "HTTP Hasło"
 
 #: Settings
 msgctxt "#32012"
@@ -148,6 +163,11 @@ msgstr "Reżyserów"
 msgctxt "#32122"
 msgid "Webserver is disabled"
 msgstr "Web serwer jest wyłączony"
+
+#: Notification
+msgctxt "#32123"
+msgid "Source inaccessible"
+msgstr "Źródło niedostępne"
 
 #: Notification
 msgctxt "#32116"

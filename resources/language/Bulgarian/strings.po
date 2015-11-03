@@ -1,11 +1,11 @@
 # script.movielib language file
 # Translators:
-# Kiril <neohidra@gmail.com>, 2014
+# Kiril <neohidra@gmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Movielib for XBMC\n"
-"PO-Revision-Date: 2015-10-02 12:08+0000\n"
-"Last-Translator: Regss <regss84@gmail.com>\n"
+"PO-Revision-Date: 2015-11-03 11:43+0000\n"
+"Last-Translator: Kiril <neohidra@gmail.com>\n"
 "Language-Team: Bulgarian (Bulgaria) (http://www.transifex.com/movielib/movielib-for-xbmc/language/bg_BG/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -38,6 +38,21 @@ msgstr "URL адрес"
 msgctxt "#32001"
 msgid "Token"
 msgstr "Токен"
+
+#: Settings
+msgctxt "#32004"
+msgid "HTTP Basic Auth"
+msgstr "HTTP удостоверяване"
+
+#: Settings
+msgctxt "#32005"
+msgid "HTTP Login"
+msgstr "HTTP потребител"
+
+#: Settings
+msgctxt "#32006"
+msgid "HTTP Password"
+msgstr "HTTP парола"
 
 #: Settings
 msgctxt "#32012"
@@ -147,7 +162,12 @@ msgstr "Режисьори"
 #: Notification
 msgctxt "#32122"
 msgid "Webserver is disabled"
-msgstr ""
+msgstr "Уеб сървърът е изключен"
+
+#: Notification
+msgctxt "#32123"
+msgid "Source inaccessible"
+msgstr "Източникът не е достъпен"
 
 #: Notification
 msgctxt "#32116"
@@ -157,17 +177,17 @@ msgstr "Твърде много данни за изпращане към сър
 #: Notification
 msgctxt "#32117"
 msgid "Posters"
-msgstr ""
+msgstr "Плакати"
 
 #: Notification
 msgctxt "#32118"
 msgid "Fanarts"
-msgstr ""
+msgstr "Фен-арт"
 
 #: Notification
 msgctxt "#32119"
 msgid "Thumbs"
-msgstr ""
+msgstr "Миниатюри"
 
 #: Notification
 msgctxt "#32120"
@@ -177,7 +197,7 @@ msgstr ""
 #: Notification
 msgctxt "#32121"
 msgid "Images"
-msgstr ""
+msgstr "Изображения"
 
 #: Progress Bar
 msgctxt "#32200"
