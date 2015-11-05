@@ -225,7 +225,7 @@ def getDataFromXBMC(self, dataSORT):
     self.progBar.create(__lang__(32200), __addonname__ + ', ' + __lang__(32206) + '...')
     p = 0
     
-    for table in dataXBMC['videos'].keys():
+    for table in dataSORT['videos']:
         
         p += 33
         self.progBar.update(p, __lang__(32206) + ' - ' + __lang__(self.lang[table]))
