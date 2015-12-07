@@ -43,13 +43,14 @@ def start(self):
         self.forcedStart = False
     
     self.setXBMC = {}
-    self.setXBMC['URL']      = __addon__.getSetting('url')
-    self.setXBMC['Token']    = __addon__.getSetting('token')
-    self.setXBMC['Notify']   = __addon__.getSetting('notify')
-    self.setXBMC['Debug']    = __addon__.getSetting('debug')
-    self.setXBMC['Auth']      = __addon__.getSetting('auth')
-    self.setXBMC['AuthLogin'] = __addon__.getSetting('authLogin')
-    self.setXBMC['AuthPass']  = __addon__.getSetting('authPass')
+    self.setXBMC['URL']         = __addon__.getSetting('url')
+    self.setXBMC['Token']       = __addon__.getSetting('token')
+    self.setXBMC['CheckSource'] = __addon__.getSetting('checkSource')
+    self.setXBMC['Notify']      = __addon__.getSetting('notify')
+    self.setXBMC['Debug']       = __addon__.getSetting('debug')
+    self.setXBMC['Auth']        = __addon__.getSetting('auth')
+    self.setXBMC['AuthLogin']   = __addon__.getSetting('authLogin')
+    self.setXBMC['AuthPass']    = __addon__.getSetting('authPass')
     
     self.versionWebScript = '2.8.0'
     
@@ -149,17 +150,18 @@ def check(self):
     }
     
     # check source
-    jsonGetSource = '{"jsonrpc": "2.0", "method": "Files.GetSources", "params": {"media": "video"}, "id": 1}'
-    jsonGetSource = xbmc.executeJSONRPC(jsonGetSource)
-    jsonGetSource = unicode(jsonGetSource, 'utf-8', errors='ignore')
-    jsonGetSourceResponse = json.loads(jsonGetSource)
-    
-    if 'result' in jsonGetSourceResponse and 'sources' in jsonGetSourceResponse['result']:
-        for s in jsonGetSourceResponse['result']['sources']:
-            if xbmcvfs.exists(s['file']) == 0:
-                debug.notify(__lang__(32123).encode('utf-8') + ': ' + s['file'].encode('utf-8'))
-                debug.debug('Source inaccessible: ' + s['file'].encode('utf-8'))
-                return False
+    if 'true' in self.setXBMC['CheckSource']:
+        jsonGetSource = '{"jsonrpc": "2.0", "method": "Files.GetSources", "params": {"media": "video"}, "id": 1}'
+        jsonGetSource = xbmc.executeJSONRPC(jsonGetSource)
+        jsonGetSource = unicode(jsonGetSource, 'utf-8', errors='ignore')
+        jsonGetSourceResponse = json.loads(jsonGetSource)
+        
+        if 'result' in jsonGetSourceResponse and 'sources' in jsonGetSourceResponse['result']:
+            for s in jsonGetSourceResponse['result']['sources']:
+                if xbmcvfs.exists(s['file']) == 0:
+                    debug.notify(__lang__(32123).encode('utf-8') + ': ' + s['file'].encode('utf-8'))
+                    debug.debug('Source inaccessible: ' + s['file'].encode('utf-8'))
+                    return False
     
     # get videos from XBMC
     dataSORT                            = {}
