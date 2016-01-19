@@ -42,6 +42,15 @@ def start(self):
     else:
         self.forcedStart = False
     
+    # if start only for banner
+    try:
+        self.bannerID = str(sys.argv[2])
+        self.bannerTYPE = str(sys.argv[3])
+    except:
+        self.onlyBanner = False
+    else:
+        self.onlyBanner = True
+    
     self.setXBMC = {}
     self.setXBMC['URL']         = __addon__.getSetting('url')
     self.setXBMC['Token']       = __addon__.getSetting('token')
@@ -116,6 +125,12 @@ def check(self):
         return False
     else:
         debug.debug('Token is valid')
+    
+    # only banner
+    if self.onlyBanner == True:
+        debug.debug('=== GENREATE BANNER (ONLY MODE) ===')
+        sendRequest.send(self, 'generatebanner', { 'id': self.bannerID, 'type': self.bannerTYPE })
+        return False
     
     # get hash tables from site
     self.hashSITE = sendRequest.send(self, 'showhash')

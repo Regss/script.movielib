@@ -91,7 +91,7 @@ def sync(self, ImagesXBMC, ImagesSORT):
                         if sendRequest.send(self, 'addimages', value) is False:
                             self.progBar.close()
                             return False
-                    addedCount += 1
+                        addedCount += 1
                 self.progBar.close()
                 
                 if addedCount > 0:

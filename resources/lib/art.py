@@ -69,6 +69,16 @@ def create(source, i, width, height, q):
             debug.debug(str(jsonGetResponse))
             debug.debug(source)
             debug.debug(str(Error))
+            
+            # try only copy image without using PIL
+            debug.debug('Trying to just copy...')
+            try:
+                f = xbmcvfs.File(file_path)
+                output = f.read()
+                f.close()
+        
+            except Exception as Error:
+                debug.debug(str(Error))
     
     return output
     
