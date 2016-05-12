@@ -1,10 +1,10 @@
 # script.movielib language file
 # Translators:
-# Regss <regss84@gmail.com>, 2014-2015
+# Regss <regss84@gmail.com>, 2014-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Movielib for XBMC\n"
-"PO-Revision-Date: 2015-12-07 12:20+0000\n"
+"PO-Revision-Date: 2016-05-12 10:34+0000\n"
 "Last-Translator: Regss <regss84@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/movielib/movielib-for-xbmc/language/pl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -243,3 +243,38 @@ msgstr "Szukam zmian"
 msgctxt "#32209"
 msgid "Updating"
 msgstr "Uaktualniam"
+
+#: Settings
+msgctxt "#32020"
+msgid "Triggers"
+msgstr "Wyzwalacze"
+
+#: Settings
+msgctxt "#32021"
+msgid "For the changes to take effect you need to restart kodi"
+msgstr "Aby zmiany odniosły skutek musisz ponownie uruchomić kodi"
+
+#: Settings
+msgctxt "#32022"
+msgid "On KODI start"
+msgstr "Przy uruchamianiu"
+
+#: Settings
+msgctxt "#32023"
+msgid "On player stop"
+msgstr "Przy zatrzymaniu odtwarzania"
+
+#: Settings
+msgctxt "#32024"
+msgid "On database scan finished"
+msgstr "Przy zakończeniu skanowania bazy"
+
+#: Settings
+msgctxt "#32025"
+msgid "On database clean finished"
+msgstr "Przy zakończeniu czyszczenia bazy"
+
+#: Settings
+msgctxt "#32026"
+msgid "On system Wake Up"
+msgstr "Przy wznowieniu systemu"

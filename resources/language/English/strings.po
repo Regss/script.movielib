@@ -234,3 +234,38 @@ msgstr ""
 msgctxt "#32209"
 msgid "Updating"
 msgstr ""
+
+#: Settings
+msgctxt "#32020"
+msgid "Triggers"
+msgstr ""
+
+#: Settings
+msgctxt "#32021"
+msgid "For the changes to take effect you need to restart kodi"
+msgstr ""
+
+#: Settings
+msgctxt "#32022"
+msgid "On KODI start"
+msgstr ""
+
+#: Settings
+msgctxt "#32023"
+msgid "On player stop"
+msgstr ""
+
+#: Settings
+msgctxt "#32024"
+msgid "On database scan finished"
+msgstr ""
+
+#: Settings
+msgctxt "#32025"
+msgid "On database clean finished"
+msgstr ""
+
+#: Settings
+msgctxt "#32026"
+msgid "On system Wake Up"
+msgstr ""
