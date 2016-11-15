@@ -76,7 +76,7 @@ def start(self):
     # prepare URL
     if self.setXBMC['URL'][-1:] != '/':
         self.setXBMC['URL'] = self.setXBMC['URL'] + '/'
-    if self.setXBMC['URL'][:7] != 'http://':
+    if self.setXBMC['URL'][:7] != 'http://' and self.setXBMC['URL'][:8] != 'https://':
         self.setXBMC['URL'] = 'http://' + self.setXBMC['URL']
     self.setXBMC['URL'] = self.setXBMC['URL'] + 'sync.php?' + 'token=' + self.setXBMC['Token'] + '&option='
     
