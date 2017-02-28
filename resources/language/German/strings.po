@@ -1,13 +1,13 @@
 # script.movielib language file
 # Translators:
-# Ettore Atalan <atalanttore@googlemail.com>, 2014-2015
+# Ettore Atalan <atalanttore@googlemail.com>, 2014-2015,2017
 # Markus <Markus@koepke-online.com>, 2014
 # Markus <Markus@koepke-online.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Movielib for XBMC\n"
-"PO-Revision-Date: 2015-12-07 12:19+0000\n"
-"Last-Translator: Regss <regss84@gmail.com>\n"
+"PO-Revision-Date: 2017-02-28 12:02+0000\n"
+"Last-Translator: Björn Sengotta <bjoern@sengotta.net>\n"
 "Language-Team: German (http://www.transifex.com/movielib/movielib-for-xbmc/language/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -44,12 +44,12 @@ msgstr "Token"
 #: Settings
 msgctxt "#32007"
 msgid "Check accessibility of sources"
-msgstr ""
+msgstr "Erreichbarkeit der Quellen überprüfen"
 
 #: Settings
 msgctxt "#32004"
 msgid "HTTP Basic Auth"
-msgstr ""
+msgstr "HTTP-Basisauthentifizierung"
 
 #: Settings
 msgctxt "#32005"
@@ -77,19 +77,9 @@ msgid "Notification"
 msgstr "Benachrichtigung"
 
 #: Settings
-msgctxt "#32003"
-msgid "Debug"
-msgstr "Fehlersuche"
-
-#: Settings
 msgctxt "#32013"
 msgid "Progress bar"
 msgstr "Fortschrittsbalken"
-
-#: Notification
-msgctxt "#32115"
-msgid "Debugging enabled"
-msgstr "Defektlokalisierung aktiviert"
 
 #: Notification
 msgctxt "#32100"
@@ -245,3 +235,38 @@ msgstr "Änderungen werden überprüft"
 msgctxt "#32209"
 msgid "Updating"
 msgstr "Aktualisieren"
+
+#: Settings
+msgctxt "#32020"
+msgid "Triggers"
+msgstr "Auslöser"
+
+#: Settings
+msgctxt "#32021"
+msgid "For the changes to take effect you need to restart kodi"
+msgstr "Damit die Änderungen wirksam werden, müssen Sie Kodi neu starten"
+
+#: Settings
+msgctxt "#32022"
+msgid "On KODI start"
+msgstr "Bei KODI-Start"
+
+#: Settings
+msgctxt "#32023"
+msgid "On player stop"
+msgstr "Bei Wiedergabeprogrammstopp"
+
+#: Settings
+msgctxt "#32024"
+msgid "On database scan finished"
+msgstr "Bei abgeschlossener Datenbanksuche"
+
+#: Settings
+msgctxt "#32025"
+msgid "On database clean finished"
+msgstr "Bei abgeschlossener Datenbankbereinigung"
+
+#: Settings
+msgctxt "#32026"
+msgid "On system Wake Up"
+msgstr "Beim Aufwachen des Systems"

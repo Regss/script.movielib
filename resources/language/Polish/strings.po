@@ -4,13 +4,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Movielib for XBMC\n"
-"PO-Revision-Date: 2016-05-12 10:34+0000\n"
+"PO-Revision-Date: 2017-02-28 12:02+0000\n"
 "Last-Translator: Regss <regss84@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/movielib/movielib-for-xbmc/language/pl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pl\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #: addon.xml
 msgctxt "Addon Summary"
@@ -75,19 +75,9 @@ msgid "Notification"
 msgstr "Informacje"
 
 #: Settings
-msgctxt "#32003"
-msgid "Debug"
-msgstr "Debugowanie"
-
-#: Settings
 msgctxt "#32013"
 msgid "Progress bar"
 msgstr "Pasek postępu"
-
-#: Notification
-msgctxt "#32115"
-msgid "Debugging enabled"
-msgstr "Debugowanie włączone"
 
 #: Notification
 msgctxt "#32100"

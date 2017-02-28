@@ -24,16 +24,19 @@ class Monitor(xbmc.Monitor):
             xbmc.executebuiltin('XBMC.RunScript(' + __addon_id__ + ', 1)')
         
     def onNotification(self, sender, method, data):
-    
+        data = json.loads(data)
         # start Movielib for update banner (Now Playing)
         if method == 'Player.OnPlay':
-            data = json.loads(data)
             if 'item' in data and 'type' in data['item'] and 'id' in data['item']:
-                xbmc.executebuiltin('XBMC.RunScript(' + __addon_id__ + ', 1, ' + str(data['item']['id']) + ', ' + data['item']['type'] + ')')
+                xbmc.executebuiltin('XBMC.RunScript(' + __addon_id__ + ', 2, ' + str(data['item']['id']) + ', ' + data['item']['type'] + ')')
         
         # start Movielib on trigger
         if method in __trigger__.keys() and 'true' in __trigger__[method]:
-            xbmc.executebuiltin('XBMC.RunScript(' + __addon_id__ + ', 1)')
+            if method == 'Player.OnStop':
+                if 'item' in data and 'type' in data['item'] and 'id' in data['item']:
+                    xbmc.executebuiltin('XBMC.RunScript(' + __addon_id__ + ', 3, ' + str(data['item']['id']) + ', ' + data['item']['type'] + ')')
+            else:
+                xbmc.executebuiltin('XBMC.RunScript(' + __addon_id__ + ', 1)')
         
 monitor = Monitor()
 

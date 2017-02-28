@@ -1,5 +1,11 @@
 # -*- coding: utf-8 -*-
 
+# runing mode
+# 0 - start from program section (force sync all data)
+# 1 - normal start
+# 2 - only generate banner
+# 3 - sync only played item
+
 import xbmc
 import xbmcgui
 import xbmcaddon
@@ -33,30 +39,27 @@ def start(self):
     if xbmcvfs.exists(__datapath__ + '/settings.xml') == 0:
         __addon__.openSettings()
         
-    # if start from porgram section by user force sync all data
+    # check mode
     try:
-        mode = str(sys.argv[1])
+        self.mode = int(str(sys.argv[1]))
     except:
-        self.forcedStart = True
+        self.mode = 0
         debug.debug('=== FORCED START ===')
-    else:
-        self.forcedStart = False
+    debug.debug('MODE: ' + str(self.mode))
     
-    # if start only for banner
+    # get other args
     try:
-        self.bannerID = str(sys.argv[2])
-        self.bannerTYPE = str(sys.argv[3])
+        self.itemID = str(sys.argv[2])
+        self.itemTYPE = str(sys.argv[3])
     except:
-        self.onlyBanner = False
-    else:
-        self.onlyBanner = True
+        self.itemID = ''
+        self.itemTYPE = ''
     
     self.setXBMC = {}
     self.setXBMC['URL']         = __addon__.getSetting('url')
     self.setXBMC['Token']       = __addon__.getSetting('token')
     self.setXBMC['CheckSource'] = __addon__.getSetting('checkSource')
     self.setXBMC['Notify']      = __addon__.getSetting('notify')
-    self.setXBMC['Debug']       = __addon__.getSetting('debug')
     self.setXBMC['Auth']        = __addon__.getSetting('auth')
     self.setXBMC['AuthLogin']   = __addon__.getSetting('authLogin')
     self.setXBMC['AuthPass']    = __addon__.getSetting('authPass')
@@ -68,10 +71,6 @@ def start(self):
     # debug settings
     for n, s in self.setXBMC.items():
         debug.debug('XBMC: ' + n + ': ' + s)
-    
-    # notify if debugging is on
-    if 'true' in self.setXBMC['Debug']:
-        debug.notify(__lang__(32115).encode('utf-8'))
     
     # prepare URL
     if self.setXBMC['URL'][-1:] != '/':
@@ -126,18 +125,20 @@ def check(self):
     else:
         debug.debug('Token is valid')
     
-    # only banner
-    if self.onlyBanner == True:
+    # only banner (mode = 2)
+    if self.mode == 2:
         debug.debug('=== GENREATE BANNER (ONLY MODE) ===')
-        sendRequest.send(self, 'generatebanner', { 'id': self.bannerID, 'type': self.bannerTYPE })
+        if self.itemID != '' and self.itemTYPE != '':
+            sendRequest.send(self, 'generatebanner', { 'id': self.itemID, 'type': self.itemTYPE })
         return False
     
     # get hash tables from site
     self.hashSITE = sendRequest.send(self, 'showhash')
     if self.hashSITE is False:
         return False
-    # reset hash if forced start
-    if self.forcedStart == True:
+        
+    # reset hash if forced start (mode = 0)
+    if self.mode == 0:
         for t in self.hashSITE:
             self.hashSITE[t] = ""
     debug.debug('[hashSITE]: ' + str(self.hashSITE))
@@ -187,6 +188,27 @@ def check(self):
     dataSORT['tvshows']                 = ['poster', 'fanart']
     dataSORT['episodes']                = ['poster']
     dataSORT['actors']                  = ['thumb']
+    
+    if self.mode == 3 and self.itemID != '' and self.itemTYPE != '':
+        debug.debug('=== UPDATE ONE VIDEO MODE ===')
+        
+        dataSORT['videos']                  = [self.itemTYPE+'s']
+        
+        tnMovies = json.loads(self.tn[self.itemTYPE+'s']['json'])
+        tnMovies['method'] = 'VideoLibrary.GetMovieDetails' if self.itemTYPE == 'movie' else 'VideoLibrary.GetEpisodeDetails'
+        tnMovies['params'][self.itemTYPE+'id'] = int(self.itemID)
+        self.tn[self.itemTYPE+'s']['json'] = json.dumps(tnMovies)
+        
+        dataXBMC = getDataFromXBMC(self, dataSORT)
+        
+        if syncVideo.add(self, dataXBMC['videos'], [self.itemID], self.itemTYPE+'s', 'update') is False:
+            self.progBar.close()
+            return False
+        self.progBar.close()
+        
+        syncImage.sync(self, dataXBMC['images'], dataSORT, True)
+        
+        return
     
     dataXBMC = getDataFromXBMC(self, dataSORT)
     
@@ -253,8 +275,14 @@ def getDataFromXBMC(self, dataSORT):
         
         # prepare array
         dataXBMC['videos'][table] = {}
-        if 'result' in jsonGetDataResponse and table in jsonGetDataResponse['result']:
-            for data in jsonGetDataResponse['result'][table]:
+        if ('result' in jsonGetDataResponse) and (table in jsonGetDataResponse['result'] or table[0:-1]+'details' in jsonGetDataResponse['result']):
+            
+            if len(dataSORT['videos']) == 1:
+                jsonDATA = [jsonGetDataResponse['result'][table[0:-1]+'details']]
+            else:
+                jsonDATA = jsonGetDataResponse['result'][table]
+        
+            for data in jsonDATA:
                 
                 # prepare array for videos
                 dataXBMC['videos'][table][str(data[table[0:-1]+'id'])] = data

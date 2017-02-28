@@ -20,7 +20,6 @@
     </category>
     <category label="32011">
         <setting label="32002" type="bool" id="notify" default="true" />
-        <setting label="32003" type="bool" id="debug" default="false" />
         <setting label="32013" type="bool" id="bar" default="true" />
     </category>
 </settings>

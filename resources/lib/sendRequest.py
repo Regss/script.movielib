@@ -28,7 +28,7 @@ def send(self, option, values=''):
     
     debug.debug('[REQUEST DATA SIZE]: ' + str(data_len) + ' bytes')
     
-    if option != 'checksettings' and data_len > self.setSITE['POST_MAX_SIZE_B']:
+    if option != 'checksettings' and data_len > self.setSITE['POST_MAX_SIZE_B'] and self.setSITE['POST_MAX_SIZE_B'] != 0:
         debug.notify(__lang__(32116).encode('utf-8'))
         debug.debug('[REQUEST ERROR]: Data too large to send, server can takes only ' + str(self.setSITE['POST_MAX_SIZE_B']) + ' bytes')
         return False

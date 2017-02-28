@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Movielib for XBMC\n"
-"PO-Revision-Date: 2015-12-07 12:19+0000\n"
+"PO-Revision-Date: 2017-02-28 12:02+0000\n"
 "Last-Translator: Regss <regss84@gmail.com>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/movielib/movielib-for-xbmc/language/hr_HR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -75,19 +75,9 @@ msgid "Notification"
 msgstr "Obavijest"
 
 #: Settings
-msgctxt "#32003"
-msgid "Debug"
-msgstr "Otklanjanje greški"
-
-#: Settings
 msgctxt "#32013"
 msgid "Progress bar"
 msgstr "Traka napretka"
-
-#: Notification
-msgctxt "#32115"
-msgid "Debugging enabled"
-msgstr "Otklanjanje grešaka je uključeno"
 
 #: Notification
 msgctxt "#32100"
@@ -243,3 +233,38 @@ msgstr ""
 msgctxt "#32209"
 msgid "Updating"
 msgstr "Ažuriram"
+
+#: Settings
+msgctxt "#32020"
+msgid "Triggers"
+msgstr ""
+
+#: Settings
+msgctxt "#32021"
+msgid "For the changes to take effect you need to restart kodi"
+msgstr ""
+
+#: Settings
+msgctxt "#32022"
+msgid "On KODI start"
+msgstr ""
+
+#: Settings
+msgctxt "#32023"
+msgid "On player stop"
+msgstr ""
+
+#: Settings
+msgctxt "#32024"
+msgid "On database scan finished"
+msgstr ""
+
+#: Settings
+msgctxt "#32025"
+msgid "On database clean finished"
+msgstr ""
+
+#: Settings
+msgctxt "#32026"
+msgid "On system Wake Up"
+msgstr ""

@@ -66,18 +66,8 @@ msgid "Notification"
 msgstr ""
 
 #: Settings
-msgctxt "#32003"
-msgid "Debug"
-msgstr ""
-
-#: Settings
 msgctxt "#32013"
 msgid "Progress bar"
-msgstr ""
-
-#: Notification
-msgctxt "#32115"
-msgid "Debugging enabled"
 msgstr ""
 
 #: Notification

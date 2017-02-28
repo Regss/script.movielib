@@ -16,7 +16,7 @@ import debug
 import sendRequest
 import art
 
-def sync(self, ImagesXBMC, ImagesSORT):
+def sync(self, ImagesXBMC, ImagesSORT, onlyAdd=False):
     # get panels list from XBMC
     
     ImagesSite = sendRequest.send(self, 'showimages')
@@ -40,15 +40,24 @@ def sync(self, ImagesXBMC, ImagesSORT):
             if self.setSITE['xbmc_'+img_type+'s'] == '1':
                 ImagesToAdd[v_type][img_type] = set(ImagesXBMC[v_type][img_type].keys()) - set(ImagesSite[v_type][img_type])
     debug.debug('[ImagesToAdd]: ' + str(ImagesToAdd))
+    addImg(self, ImagesXBMC, ImagesToAdd, ImagesSORT)
     
     #prepare images to remove
-    ImagesToRemove = {}
-    for v_type in ImagesXBMC.keys():
-        ImagesToRemove[v_type] = {}
-        for img_type in ImagesXBMC[v_type].keys():
-            ImagesToRemove[v_type][img_type] = set(ImagesSite[v_type][img_type]) - set(ImagesXBMC[v_type][img_type].keys())
-    debug.debug('[ImagesToRemove]: ' + str(ImagesToRemove))
+    if onlyAdd is False:
+        ImagesToRemove = {}
+        for v_type in ImagesXBMC.keys():
+            ImagesToRemove[v_type] = {}
+            for img_type in ImagesXBMC[v_type].keys():
+                ImagesToRemove[v_type][img_type] = set(ImagesSite[v_type][img_type]) - set(ImagesXBMC[v_type][img_type].keys())
+        debug.debug('[ImagesToRemove]: ' + str(ImagesToRemove))
+        removeImg(self, ImagesToRemove)
     
+        # update hash
+        value = { 'images': str(hashImagesXBMC) }
+        if sendRequest.send(self, 'updatehash', value) is False:
+            return False
+    
+def addImg(self, ImagesXBMC, ImagesToAdd, ImagesSORT):
     # adding new images
     for type in ImagesSORT['images']:
         
@@ -97,6 +106,7 @@ def sync(self, ImagesXBMC, ImagesSORT):
                 if addedCount > 0:
                     debug.notify(__lang__(32104).encode('utf-8') + ' ' + __lang__(32121).encode('utf-8') + ' (' + __lang__(self.lang[type]).encode('utf-8') + ' - ' + __lang__(self.lang[img_type]).encode('utf-8') + '): ' + str(addedCount))
     
+def removeImg(self, ImagesToRemove):
     # removing images
     toRemove = {}
     removedCount = 0
@@ -120,9 +130,3 @@ def sync(self, ImagesXBMC, ImagesSORT):
         if sendRequest.send(self, 'removeimages', toRemove) is False:
             return False
         debug.notify(__lang__(32105).encode('utf-8') + ' ' + __lang__(32121).encode('utf-8') + ': ' + str(removedCount))
-    
-    # update hash
-    value = { 'images': str(hashImagesXBMC) }
-    if sendRequest.send(self, 'updatehash', value) is False:
-        return False
-        

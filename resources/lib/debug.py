@@ -7,9 +7,11 @@ __addon__               = xbmcaddon.Addon()
 __icon__                = __addon__.getAddonInfo('icon')
 
 def debug(msg):
-    if 'true' in __addon__.getSetting('debug'):
-        xbmc.log('>>>> Movielib <<<< ' + msg)
-        
+    xbmc.log('>>>> Movielib <<<< ' + msg, level=xbmc.LOGDEBUG)
+    
+def notice(msg):
+    xbmc.log('>>>> Movielib <<<< ' + msg, level=xbmc.LOGNOTICE)
+    
 def notify(msg):
     if 'true' in __addon__.getSetting('notify'):
         xbmc.executebuiltin('Notification(Movielib, ' + msg + ', 4000, ' + __icon__ + ')')

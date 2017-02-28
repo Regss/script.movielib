@@ -1,271 +1,270 @@
 # script.movielib language file
 # Translators:
-# Kiril <neohidra@gmail.com>, 2014-2015
-# Matey Marinov <matey.marinov@gmail.com>, 2017
+# Tomáš Pocner <pocner@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Movielib for XBMC\n"
 "PO-Revision-Date: 2017-02-28 12:02+0000\n"
 "Last-Translator: Regss <regss84@gmail.com>\n"
-"Language-Team: Bulgarian (Bulgaria) (http://www.transifex.com/movielib/movielib-for-xbmc/language/bg_BG/)\n"
+"Language-Team: Czech (http://www.transifex.com/movielib/movielib-for-xbmc/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: bg_BG\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: cs\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #: addon.xml
 msgctxt "Addon Summary"
 msgid "Synchronizes video library with the Movielib website"
-msgstr "Синхронизира видео библиотеката с уеб страницата на Movielib"
+msgstr "Synchronizuje video knihovnu s webovými stránkami Movielib"
 
 #: addon.xml
 msgctxt "Addon Description"
 msgid ""
 "Synchronizes video library with the Movielib website. Script can be "
 "downloaded from https://github.com/Regss/movielib"
-msgstr "Синхронизира видео библиотеката с уеб страницата на Movielib.  Скрипта може да бъде свален от https://github.com/Regss/movielib"
+msgstr "Synchronizuje video knihovnu s webovými stránkami Movielib. Script může být stažen z https://github.com/Regss/movielib"
 
 #: Settings
 msgctxt "#32010"
 msgid "Connection"
-msgstr "Връзка"
+msgstr "Připojení"
 
 #: Settings
 msgctxt "#32000"
 msgid "URL"
-msgstr "URL адрес"
+msgstr "URL"
 
 #: Settings
 msgctxt "#32001"
 msgid "Token"
-msgstr "Токен"
+msgstr "Token"
 
 #: Settings
 msgctxt "#32007"
 msgid "Check accessibility of sources"
-msgstr "Проверка на достъпността на източниците"
+msgstr "Kontrolovat dostupnost zdrojů"
 
 #: Settings
 msgctxt "#32004"
 msgid "HTTP Basic Auth"
-msgstr "HTTP удостоверяване"
+msgstr "HTTP Základní Oprávnění"
 
 #: Settings
 msgctxt "#32005"
 msgid "HTTP Login"
-msgstr "HTTP потребител"
+msgstr "HTTP Přihlášení"
 
 #: Settings
 msgctxt "#32006"
 msgid "HTTP Password"
-msgstr "HTTP парола"
+msgstr "HTTP Heslo"
 
 #: Settings
 msgctxt "#32012"
 msgid "Synchronization"
-msgstr "Синхронизиране"
+msgstr "Synchronizace"
 
 #: Settings
 msgctxt "#32011"
 msgid "Notification"
-msgstr "Известия"
+msgstr "Oznámení"
 
 #: Settings
 msgctxt "#32002"
 msgid "Notification"
-msgstr "Известия"
+msgstr "Oznámení"
 
 #: Settings
 msgctxt "#32013"
 msgid "Progress bar"
-msgstr "Лента за напредъка"
+msgstr "Ukazatel průběhu"
 
 #: Notification
 msgctxt "#32100"
 msgid "Can't connect to site"
-msgstr "Свързването със сайта не е възможно"
+msgstr "Nelze se připojit k webovým stránkám"
 
 #: Notification
 msgctxt "#32109"
 msgid "Wrong version of web script. Update is needed"
-msgstr "Неподходяща версия на уеб скрипта. Необходимо е обновяване."
+msgstr "Špatná verze webového skriptu. Je potřeba aktualizovat"
 
 #: Notification
 msgctxt "#32101"
 msgid "Wrong Token"
-msgstr "Грешен токен"
+msgstr "Špatný Token"
 
 #: Notification
 msgctxt "#32102"
 msgid "Sync Error"
-msgstr "Грешка при синхронизирането"
+msgstr "Chyba synchronizace"
 
 #: Notification
 msgctxt "#32103"
 msgid "Updated"
-msgstr "Обновено"
+msgstr "Aktualizováno"
 
 #: Notification
 msgctxt "#32104"
 msgid "Added"
-msgstr "Добавен"
+msgstr "Přidáno"
 
 #: Notification
 msgctxt "#32105"
 msgid "Removed"
-msgstr "Премахнат"
+msgstr "Odebráno"
 
 #: Notification
 msgctxt "#32106"
 msgid "Movies"
-msgstr "Филми"
+msgstr "Filmy"
 
 #: Notification
 msgctxt "#32107"
 msgid "TVShows"
-msgstr "ТВ Сериали"
+msgstr "Seriály"
 
 #: Notification
 msgctxt "#32108"
 msgid "Episodes"
-msgstr "Епизоди"
+msgstr "Epizody"
 
 #: Notification
 msgctxt "#32110"
 msgid "Actors"
-msgstr "Актьори"
+msgstr "Herci"
 
 #: Notification
 msgctxt "#32111"
 msgid "Genres"
-msgstr "Жанрове"
+msgstr "Žánry"
 
 #: Notification
 msgctxt "#32112"
 msgid "Countries"
-msgstr "Държави"
+msgstr "Země"
 
 #: Notification
 msgctxt "#32113"
 msgid "Studios"
-msgstr "Студиа"
+msgstr "Studia"
 
 #: Notification
 msgctxt "#32114"
 msgid "Directors"
-msgstr "Режисьори"
+msgstr "Režiséři"
 
 #: Notification
 msgctxt "#32122"
 msgid "Webserver is disabled"
-msgstr "Уеб сървърът е изключен"
+msgstr "Webserver je vypnut"
 
 #: Notification
 msgctxt "#32123"
 msgid "Source inaccessible"
-msgstr "Източникът не е достъпен"
+msgstr "Nedostupný zdroj"
 
 #: Notification
 msgctxt "#32116"
 msgid "Data too large to send to server"
-msgstr "Твърде много данни за изпращане към сървъра"
+msgstr "Data k odeslání na server jsou příliš velká "
 
 #: Notification
 msgctxt "#32117"
 msgid "Posters"
-msgstr "Плакати"
+msgstr "Plakáty"
 
 #: Notification
 msgctxt "#32118"
 msgid "Fanarts"
-msgstr "Фен-арт"
+msgstr "Fanarty"
 
 #: Notification
 msgctxt "#32119"
 msgid "Thumbs"
-msgstr "Миниатюри"
+msgstr "Náhledy"
 
 #: Notification
 msgctxt "#32120"
 msgid "Extra thumbs"
-msgstr "Допълнителни миниатюри"
+msgstr "Extra náhledy"
 
 #: Notification
 msgctxt "#32121"
 msgid "Images"
-msgstr "Изображения"
+msgstr "Obrázky"
 
 #: Progress Bar
 msgctxt "#32200"
 msgid "Starting"
-msgstr "Начало"
+msgstr "Startuji"
 
 #: Progress Bar
 msgctxt "#32201"
 msgid "Movies"
-msgstr "Филми"
+msgstr "Filmy"
 
 #: Progress Bar
 msgctxt "#32202"
 msgid "TVShows"
-msgstr "ТВ Сериали"
+msgstr "Seriály"
 
 #: Progress Bar
 msgctxt "#32203"
 msgid "Episodes"
-msgstr "Епизоди"
+msgstr "Epizody"
 
 #: Progress Bar
 msgctxt "#32204"
 msgid "Adding"
-msgstr "Добавяне"
+msgstr "Přidání"
 
 #: Progress Bar
 msgctxt "#32205"
 msgid "Removing"
-msgstr "Премахване"
+msgstr "Odebrání"
 
 #: Progress Bar
 msgctxt "#32206"
 msgid "Checking changes"
-msgstr "Проверка на промените"
+msgstr "Kontroluji změny"
 
 #: Progress Bar
 msgctxt "#32209"
 msgid "Updating"
-msgstr "Обновяване"
+msgstr "Aktualizuji"
 
 #: Settings
 msgctxt "#32020"
 msgid "Triggers"
-msgstr "Започваne"
+msgstr "Aktivační události"
 
 #: Settings
 msgctxt "#32021"
 msgid "For the changes to take effect you need to restart kodi"
-msgstr "За да влязат в сила промените, рестартирайте KODI"
+msgstr "Před použitím změn je nutné restartovat kodi"
 
 #: Settings
 msgctxt "#32022"
 msgid "On KODI start"
-msgstr "При стартиране на KODI"
+msgstr "Po startu KODI"
 
 #: Settings
 msgctxt "#32023"
 msgid "On player stop"
-msgstr "При спиране на плайъра"
+msgstr "Po skončení přehrávání"
 
 #: Settings
 msgctxt "#32024"
 msgid "On database scan finished"
-msgstr "При приключване на сканирането на датабазата"
+msgstr "Po skončení aktualizace databáze"
 
 #: Settings
 msgctxt "#32025"
 msgid "On database clean finished"
-msgstr "При приключване на изчистване на датабазата"
+msgstr "Po vyčištění databáze"
 
 #: Settings
 msgctxt "#32026"
 msgid "On system Wake Up"
-msgstr "При събуждане на системата"
+msgstr "Po probuzení systému"
