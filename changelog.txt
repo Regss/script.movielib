@@ -1,3 +1,9 @@
+[B]1.5.X BETA - has no sync in Kodi for urllib-Errors[/B]
+- new User: me!
+- Phytoncode upgraded from Version 2 to Version 3 with Phyton Script "2to3"
+- Kodi intern Flags corrected
+- Debug Code changed
+
 [B]1.4.11[/B]
 - sync trigger "on player stop" now sync only movie that stopped
 - Fixed: allow to sync when server var POST_MAX_SIZE is set to 0
