@@ -5,9 +5,11 @@ import xbmc
 import xbmcaddon
 import os
 from PIL import Image
-import cStringIO
+from io import StringIO
+from urllib.request import urlopen
 import json
 import urllib
+
 
 __addon__               = xbmcaddon.Addon()
 __addon_id__            = __addon__.getAddonInfo('id')
@@ -42,8 +44,46 @@ def create(source, i, width, height, q):
             if file_path[8:12] == 'http':
                 try:
                     link = urllib.unquote(file_path[8:][:-1]).encode('utf-8')
-                    file = cStringIO.StringIO(urllib.urlopen(link).read())
+                    file = cStringIO.StringIO(urllib.request.urlopen(link).read())
                 except:
+                    file = ''
+            else:
+                f = xbmcvfs.File(file_path)
+                file = cStringIO.StringIO(f.read())
+                f.close()
+            
+        # read image
+        try:
+            image = Image.open(file)
+            if image.mode != 'RGB':
+                image = image.convert('RGB')
+            h = image.size[1]
+            if h > 10:
+                if (h > height):
+                    image.load()
+                    image = image.resize((width, height), Image.ANTIALIAS)
+                image_bin = cStringIO.StringIO()
+                image.save(image_bin, 'JPEG', quality=int(q))
+                output = image_bin.getvalue()
+                image_bin.close()
+        
+        except Exception as Error:
+            debug.debug(str(jsonGetResponse))
+            debug.debug(source)
+            debug.debug(str(Error))
+            
+            # try only copy image without using PIL
+            debug.debug('Trying to just copy...')
+            try:
+                f = xbmcvfs.File(file_path)
+                output = f.read()
+                f.close()
+        
+            except Exception as Error:
+                debug.debug(str(Error))
+    
+    return output
+    
                     file = ''
             else:
                 f = xbmcvfs.File(file_path)
