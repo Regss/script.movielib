@@ -10,7 +10,7 @@ def debug(msg):
     xbmc.log('>>>> Movielib <<<< ' + msg, level=xbmc.LOGDEBUG)
     
 def notice(msg):
-    xbmc.log('>>>> Movielib <<<< ' + msg, level=xbmc.LOGNOTICE)
+    xbmc.log('>>>> Movielib <<<< ' + msg, level=xbmc.LOGLOGNOTICE)
     
 def notify(msg):
     if 'true' in __addon__.getSetting('notify'):
