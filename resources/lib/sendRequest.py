@@ -8,8 +8,6 @@ import json
 import time
 import base64
 
-
-
 __addon__               = xbmcaddon.Addon()
 __lang__                = __addon__.getLocalizedString
 
@@ -25,7 +23,7 @@ def send(self, option, values=''):
     debug.debug('[REQUEST]: ' + str(values))
     
     # try send data
-    data = urllib.parse(values, True)
+    data = urllib.parse.urlencode(values, True)
     data_len = len(data)
     
     debug.debug('[REQUEST DATA SIZE]: ' + str(data_len) + ' bytes')
@@ -37,11 +35,11 @@ def send(self, option, values=''):
 
     for l in range(1, 4):
         try:
-            request = urllib.request.urlopen(self.setXBMC['URL'] + option, data)
+            request = urllib.request(self.setXBMC['URL'] + option, data)
             if 'true' in self.setXBMC['Auth']:
                 base64string = base64.encodestring(self.setXBMC['AuthLogin'] + ':' + self.setXBMC['AuthPass']).replace('\n', '')
                 request.add_header('Authorization', 'Basic ' + base64string)   
-            result = urllib.request(request)
+            result = urllib.urlopen(request)
             output = result.read()
         except Exception as Error:
             conn = False
