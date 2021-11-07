@@ -2,8 +2,8 @@
 
 import xbmc
 import xbmcaddon
-import urllib
-import urllib2
+import urllib.request
+import urllib.parse
 import json
 import time
 import base64
@@ -23,7 +23,7 @@ def send(self, option, values=''):
     debug.debug('[REQUEST]: ' + str(values))
     
     # try send data
-    data = urllib.urlencode(values, True)
+    data = urllib.parse.urlencode(values, True)
     data_len = len(data)
     
     debug.debug('[REQUEST DATA SIZE]: ' + str(data_len) + ' bytes')
@@ -35,11 +35,11 @@ def send(self, option, values=''):
 
     for l in range(1, 4):
         try:
-            request = urllib2.Request(self.setXBMC['URL'] + option, data)
+            request = urllib.request.Request(self.setXBMC['URL'] + option, data)
             if 'true' in self.setXBMC['Auth']:
                 base64string = base64.encodestring(self.setXBMC['AuthLogin'] + ':' + self.setXBMC['AuthPass']).replace('\n', '')
                 request.add_header('Authorization', 'Basic ' + base64string)   
-            result = urllib2.urlopen(request)
+            result = urllib.request(request)
             output = result.read()
         except Exception as Error:
             conn = False

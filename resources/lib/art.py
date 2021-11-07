@@ -5,9 +5,11 @@ import xbmc
 import xbmcaddon
 import os
 from PIL import Image
-import cStringIO
+from io import StringIO
+from urllib.request import urlopen
 import json
 import urllib
+
 
 __addon__               = xbmcaddon.Addon()
 __addon_id__            = __addon__.getAddonInfo('id')
@@ -42,7 +44,7 @@ def create(source, i, width, height, q):
             if file_path[8:12] == 'http':
                 try:
                     link = urllib.unquote(file_path[8:][:-1]).encode('utf-8')
-                    file = cStringIO.StringIO(urllib.urlopen(link).read())
+                    file = cStringIO.StringIO(urllib.request.urlopen(link).read())
                 except:
                     file = ''
             else:
